@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:job_manager/helper/custom_error_screen.dart';
 import 'package:job_manager/helper/style.dart';
 import 'package:job_manager/screens/splash_screen.dart';
 import 'package:nb_utils/nb_utils.dart';
@@ -24,12 +25,17 @@ class MyApp extends StatelessWidget {
     return ProviderScope(
       child: MaterialApp(
         title: 'International Brand Distributor',
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-          primaryColor: AppColors.primaryColor,
-        ),
+        theme: lightTheme,
+        darkTheme: darkTheme,
+        themeMode: ThemeMode.system,
         home: const SplashScreen(),
         debugShowCheckedModeBanner: false,
+        builder: (BuildContext context, Widget? widget) {
+          ErrorWidget.builder = (FlutterErrorDetails errorDetails) {
+            return CustomError(errorDetails: errorDetails);
+          };
+          return widget!;
+        },
       ),
     );
   }

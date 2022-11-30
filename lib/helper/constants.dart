@@ -4,14 +4,20 @@ import 'package:velocity_x/velocity_x.dart';
 import 'package:intl/intl.dart';
 import 'dart:io' show Platform;
 
-const Duration appDuration = Duration(milliseconds: 800);
-const String defaulProfilePicUrl =
+const String defaultProfilePicUrl =
     'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500';
+const Duration appDuration = Duration(milliseconds: 800);
+const HeightBox formFieldHeightPadding = HeightBox(15);
+const HeightBox padding3x = HeightBox(30);
+const HeightBox padding2x = HeightBox(20);
+const HeightBox padding1x = HeightBox(10);
+const HeightBox padding5x = HeightBox(50);
+const HeightBox defaultPadding = HeightBox(20);
+const double defaultBorderRadius = 12.0;
+const double defaultBorderRadiusLr = 20.0;
+const double defaultBorderRadiusSm = 8.0;
 
-const formFieldHeightPadding = HeightBox(20);
-const defaultpadding = HeightBox(20);
-
-class Constatnts {
+class Constants {
   List<String> generateRowOfMonths() {
     List<String> months = [];
     for (int i = 1; i <= 12; i++) {
@@ -23,7 +29,7 @@ class Constatnts {
     return months;
   }
 
-  List<int> generateListofYear() {
+  List<int> generateListOfYear() {
     int from = 1990;
     int to = DateTime.now().year + 1;
     return List<int>.generate(to - from, (index) {
@@ -51,26 +57,37 @@ class Constatnts {
     return Center(child: 'Error: $e'.text.center.red600.makeCentered());
   }
 
-  InputDecoration appInputDucoration(String hint, Color color,
+  InputDecoration appInputDecoration(
+      BuildContext context, String hint, Color color,
       {IconData? icon}) {
     return InputDecoration(
       hintText: hint,
-      hintStyle: TextStyle(color: AppColors.grey),
-      prefixIcon: icon != null ? Icon(icon) : null,
-      filled: true,
-      fillColor: Colors.white,
+      hintStyle: TextStyle(color: AppColors.grey, fontSize: 14),
+      prefixIcon: icon != null
+          ? Icon(
+              icon,
+              color: context.primaryColor,
+            )
+          : null,
+      // filled: true,
+      // fillColor: Colors.white,
       errorStyle: const TextStyle(fontSize: 10, height: 0.5),
-      focusColor: AppColors.primaryColor,
-      focusedBorder: OutlineInputBorder(
-        borderRadius: const BorderRadius.all(Radius.circular(99)),
-        borderSide: BorderSide(color: AppColors.primaryColor, width: 2.0),
+      // Enabled Border
+      enabledBorder: UnderlineInputBorder(
+        borderSide: BorderSide(color: AppColors.grey),
       ),
-      contentPadding: const EdgeInsets.all(20.0),
-      border: OutlineInputBorder(
-          borderSide: BorderSide(color: color.withOpacity(0.5), width: 1.0),
-          borderRadius: const BorderRadius.all(
-            Radius.circular(99.0),
-          )),
+      // Focused Border
+      focusedBorder: UnderlineInputBorder(
+        borderSide: BorderSide(color: context.primaryColor, width: 2),
+      ),
+      // Error Border
+      errorBorder: UnderlineInputBorder(
+        borderSide: BorderSide(color: context.primaryColor, width: 1),
+      ),
+      // Focused Error Border
+      focusedErrorBorder: const UnderlineInputBorder(
+        borderSide: BorderSide(color: Colors.red, width: 1),
+      ),
     );
   }
 }

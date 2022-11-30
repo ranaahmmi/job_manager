@@ -2,16 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:job_manager/helper/constants.dart';
 import 'package:job_manager/helper/style.dart';
 import 'package:nb_utils/nb_utils.dart';
-import 'package:velocity_x/velocity_x.dart';
 
 class AppCustomButton extends StatelessWidget {
-  final VoidCallback? onpressed;
+  final VoidCallback? onPressed;
   final String title;
-  final Color color;
-  final Color textcolor;
-  final double fontsize;
+  final Color? color;
+  final Color textColor;
+  final double fontSize;
   final double elevation;
-  final bool isBoldtitle;
+  final bool isBoldTitle;
   final double? height;
   final Color shadowColor;
   final double? width;
@@ -19,39 +18,39 @@ class AppCustomButton extends StatelessWidget {
 
   const AppCustomButton({
     Key? key,
-    this.onpressed,
+    this.onPressed,
     required this.title,
-    this.color = const Color(0xFF379DFF),
-    this.textcolor = Colors.white,
-    this.fontsize = 14.0,
+    this.color,
+    this.textColor = Colors.white,
+    this.fontSize = 14.0,
     this.elevation = 0,
-    this.isBoldtitle = true,
+    this.isBoldTitle = true,
     this.height = 45,
     this.shadowColor = const Color(0xFF379DFF),
     this.width = double.infinity,
-    this.radius = 99,
+    this.radius = 0,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return AppButton(
       text: title,
-      color: color,
-      textColor: textcolor,
+      color: color ?? context.primaryColor,
+      textColor: textColor,
       elevation: elevation,
       height: height,
       width: width,
       shapeBorder: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(radius),
+        borderRadius: BorderRadius.circular(0),
       ),
       enableScaleAnimation: true,
       textStyle: TextStyle(
-        fontSize: fontsize,
-        fontWeight: isBoldtitle ? FontWeight.bold : FontWeight.normal,
-        color: textcolor,
+        fontSize: fontSize,
+        fontWeight: isBoldTitle ? FontWeight.bold : FontWeight.normal,
+        color: textColor,
       ),
       padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 0),
-      onTap: onpressed,
+      onTap: onPressed,
     );
   }
 }
@@ -96,7 +95,7 @@ class DashboardAnimationButtonState extends State<DashboardAnimationButton>
   double _scale = 1.0;
   AnimationController? _controller;
   Color color = Colors.white;
-  bool isdown = false;
+  bool isDown = false;
 
   @override
   void initState() {
@@ -134,12 +133,12 @@ class DashboardAnimationButtonState extends State<DashboardAnimationButton>
         onPointerDown: (details) {
           _controller?.forward();
           color = AppColors.primaryColor;
-          isdown = true;
+          isDown = true;
         },
         onPointerUp: (details) {
           _controller?.reverse();
           color = Colors.white;
-          isdown = false;
+          isDown = false;
         },
         child: Transform.scale(
           scale: _scale,
@@ -180,16 +179,16 @@ class DashboardAnimationButtonState extends State<DashboardAnimationButton>
                   .box
                   .roundedFull
                   .color(
-                      isdown ? Colors.white : AppColors.grey.withOpacity(0.2))
+                      isDown ? Colors.white : AppColors.grey.withOpacity(0.2))
                   .make(),
-              defaultpadding,
+              defaultPadding,
               widget.subTitle.text
-                  .color(isdown ? Colors.white : AppColors.grey)
+                  .color(isDown ? Colors.white : AppColors.grey)
                   .size(10)
                   .make(),
               5.heightBox,
               widget.title.text
-                  .color(isdown ? Colors.white : Colors.black)
+                  .color(isDown ? Colors.white : Colors.black)
                   .bold
                   .size(14)
                   .make(),

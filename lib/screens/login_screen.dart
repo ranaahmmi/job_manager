@@ -44,13 +44,13 @@ class _LoginScreenState extends State<LoginScreen> {
           body: SingleChildScrollView(
             child: Column(
               children: [
-                Container(
+                SizedBox(
                   height: 172,
-                  color: AppColors.primaryColor,
                   child: Center(
                     child: Image.asset(
                       'assets/icons/ibdw.png',
                       height: 83,
+                      color: Colors.black,
                     ),
                   ),
                 ),
@@ -60,16 +60,17 @@ class _LoginScreenState extends State<LoginScreen> {
                     duration: const Duration(milliseconds: 700),
                     child: Column(
                       children: [
-                        40.heightBox,
+                        40.height,
                         AppTextField(
-                          controller: _emailController, // Optional
-                          textFieldType: TextFieldType.USERNAME,
-                          decoration: Constatnts().appInputDucoration(
-                              'Username', AppColors.primaryColor),
+                          controller: _emailController,
+                          textFieldType: TextFieldType.EMAIL,
+                          decoration: Constants().appInputDecoration(
+                              context, 'Username', AppColors.primaryColor,
+                              icon: Icons.email_outlined),
                         ),
-                        20.heightBox,
+                        20.height,
                         AppTextField(
-                          controller: _passwordController, // Optional
+                          controller: _passwordController,
                           textFieldType: TextFieldType.PASSWORD,
                           validator: (String? value) {
                             if (value!.isEmpty) {
@@ -77,14 +78,15 @@ class _LoginScreenState extends State<LoginScreen> {
                             }
                             return null;
                           },
-                          decoration: Constatnts().appInputDucoration(
-                              'Password', AppColors.primaryColor),
+                          decoration: Constants().appInputDecoration(
+                              context, 'Password', AppColors.primaryColor,
+                              icon: Icons.lock),
                         ),
-                        30.heightBox,
+                        30.height,
                         AppCustomButton(
                           height: 60,
                           title: 'Sign In',
-                          onpressed: () async {
+                          onPressed: () async {
                             if (_formKey.currentState!.validate()) {
                               isLoading = true;
                               setState(() {});
@@ -117,7 +119,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             }
                           },
                         ),
-                        30.heightBox,
+                        30.height,
                         CheckboxListTile(
                           title: "Remember me"
                               .text

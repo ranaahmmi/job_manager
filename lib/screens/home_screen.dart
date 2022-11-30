@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:job_manager/data/models/user_model.dart';
 import 'package:job_manager/helper/app_buttons.dart';
 import 'package:job_manager/helper/constants.dart';
-import 'package:job_manager/helper/page_navigation_animation.dart';
 import 'package:job_manager/helper/style.dart';
 import 'package:velocity_x/velocity_x.dart';
 import 'package:intl/intl.dart';
@@ -104,9 +103,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      defaultpadding,
+                      defaultPadding,
                       'Dashboard'.text.black.bold.size(20).make(),
-                      defaultpadding,
+                      defaultPadding,
                       Center(
                         child: Wrap(
                           crossAxisAlignment: WrapCrossAlignment.center,
@@ -174,7 +173,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           ],
                         ),
                       ),
-                      defaultpadding,
+                      defaultPadding,
                     ],
                   ).px(20),
                 ),
@@ -268,7 +267,7 @@ showCustomDialogBottomAnimation(
                             shadowColor: AppColors.primaryColor,
                             elevation: 4,
                             title: confirmButtonText,
-                            onpressed: onConfirm),
+                            onPressed: onConfirm),
                         if (isShowCancleButton)
                           Row(
                             children: [
@@ -279,7 +278,7 @@ showCustomDialogBottomAnimation(
                                   shadowColor: AppColors.primaryColor,
                                   elevation: 4,
                                   title: cancelButtonText,
-                                  onpressed: onCancel),
+                                  onPressed: onCancel),
                             ],
                           ),
                       ],
