@@ -50,7 +50,11 @@ class _JobsScreenState extends State<JobsScreen> {
             ],
           ),
           padding2x,
-          // const JobCard()
+          const JobCard(
+            isSelected: true,
+          ),
+          padding3x,
+          const JobCard()
         ],
       ).px(20),
     );
@@ -58,10 +62,12 @@ class _JobsScreenState extends State<JobsScreen> {
 }
 
 class JobCard extends StatelessWidget {
-  final JobModel job;
+  final JobModel? job;
+  final bool isSelected;
   const JobCard({
     Key? key,
-    required this.job,
+    this.job,
+    this.isSelected = false,
   }) : super(key: key);
 
   @override
@@ -69,6 +75,7 @@ class JobCard extends StatelessWidget {
     return CustomCard(
         isBorder: true,
         isShadow: true,
+        color: isSelected ? context.colors.secondary : null,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -96,10 +103,16 @@ class JobCard extends StatelessWidget {
             padding2x,
             "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod "
                 .headingText(context, 12)
+                .text
+                .color(isSelected ? Colors.white : context.titleLarge!.color)
+                .make()
                 .pOnly(right: 120),
             padding1x,
             "Lorem ipsum dolor sit amet, consetetur sadipscing "
                 .txt(context, 12)
+                .text
+                .color(isSelected ? Colors.white : context.titleLarge!.color)
+                .make(),
           ],
         ).pLTRB(14, 14, 14, 30));
   }
