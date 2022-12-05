@@ -1,9 +1,9 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
-import 'package:job_manager/data/models/user_model.dart';
 import 'package:job_manager/helper/page_navigation_animation.dart';
-import 'package:job_manager/screens/home_screen.dart';
+import 'package:job_manager/screens/jobs_screen.dart';
 import 'package:job_manager/screens/login_screen.dart';
+import 'package:job_manager/screens/nav_bar_home.dart';
 import 'package:nb_utils/nb_utils.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -16,11 +16,11 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
-    initfunction();
+    initFunction();
     super.initState();
   }
 
-  initfunction() async {
+  initFunction() async {
     Future.delayed(const Duration(seconds: 2), () {
       print(getBoolAsync('islogin'));
       print(getJSONAsync('user'));
@@ -28,11 +28,11 @@ class _SplashScreenState extends State<SplashScreen> {
         Navigator.pushReplacement(
           context,
           SlideRightRoute(
-            page: HomeScreen(
-              user: User.fromJson(
-                getJSONAsync('user'),
-              ),
-            ),
+            page: const HomeNav(
+                // user: User.fromJson(
+                //   getJSONAsync('user'),
+                // ),
+                ),
           ),
         );
       } else {

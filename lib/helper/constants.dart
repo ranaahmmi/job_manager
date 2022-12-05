@@ -17,6 +17,63 @@ const double defaultBorderRadius = 12.0;
 const double defaultBorderRadiusLr = 20.0;
 const double defaultBorderRadiusSm = 8.0;
 
+extension Heading on String {
+  Text headingText(BuildContext context, double fontSize) {
+    return Text(
+      this,
+      style: context.textTheme.titleMedium!
+          .copyWith(fontWeight: FontWeight.w600, fontSize: fontSize),
+    );
+  }
+
+  Text txt(BuildContext context, double fontSize) {
+    return Text(
+      this,
+      style: context.textTheme.titleMedium!
+          .copyWith(fontWeight: FontWeight.w400, fontSize: fontSize),
+    );
+  }
+
+  Text textGray(BuildContext context, double fontSize) {
+    return Text(
+      this,
+      style: context.bodySmall!.copyWith(
+        color: const Color.fromRGBO(118, 118, 118, 1),
+        fontSize: fontSize,
+      ),
+    );
+  }
+
+  Widget heading20(BuildContext context) {
+    return Text(
+      this,
+      style: context.textTheme.titleMedium!
+          .copyWith(fontWeight: FontWeight.w600, fontSize: 20),
+    );
+  }
+
+  Widget heading24(BuildContext context) {
+    return Text(
+      this,
+      style: context.textTheme.headlineMedium!.copyWith(fontSize: 24),
+    );
+  }
+
+  Widget heading34(BuildContext context) {
+    return Text(
+      this,
+      style: context.textTheme.headlineMedium!.copyWith(fontSize: 34),
+    );
+  }
+
+  Text heading13(BuildContext context) {
+    return Text(
+      this,
+      style: context.bodySmall!.copyWith(fontSize: 13),
+    );
+  }
+}
+
 class Constants {
   List<String> generateRowOfMonths() {
     List<String> months = [];

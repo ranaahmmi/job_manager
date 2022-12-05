@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:job_manager/helper/custom_error_screen.dart';
 import 'package:job_manager/helper/style.dart';
 import 'package:job_manager/screens/splash_screen.dart';
@@ -23,19 +24,25 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ProviderScope(
-      child: MaterialApp(
-        title: 'International Brand Distributor',
-        theme: lightTheme,
-        darkTheme: darkTheme,
-        themeMode: ThemeMode.system,
-        home: const SplashScreen(),
-        debugShowCheckedModeBanner: false,
-        builder: (BuildContext context, Widget? widget) {
-          ErrorWidget.builder = (FlutterErrorDetails errorDetails) {
-            return CustomError(errorDetails: errorDetails);
-          };
-          return widget!;
+      child: ScreenUtilInit(
+        designSize: const Size(360, 690),
+        builder: (context, child) {
+          return MaterialApp(
+            title: 'International Brand Distributor',
+            theme: lightTheme,
+            darkTheme: darkTheme,
+            themeMode: ThemeMode.system,
+            home: const SplashScreen(),
+            debugShowCheckedModeBanner: false,
+            builder: (BuildContext context, Widget? widget) {
+              ErrorWidget.builder = (FlutterErrorDetails errorDetails) {
+                return CustomError(errorDetails: errorDetails);
+              };
+              return widget!;
+            },
+          );
         },
+        child: const SplashScreen(),
       ),
     );
   }

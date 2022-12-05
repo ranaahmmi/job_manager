@@ -1,52 +1,76 @@
 class User {
-  final int? userId;
-  final String? userName;
-  final String? personName;
-  final String? userRole;
-  final String? branchName;
-  final int? branchId;
+  final int? appUserPk;
+  final int? orgFk;
+  final String? firstName;
+  final String? lastName;
+  final String? email;
+  final String? password;
+  final String? mobileNo;
+  final String? userType;
+  final String? createJobFlag;
+  final String? completeJobFlag;
 
   User({
-    this.userId,
-    this.userName,
-    this.personName,
-    this.userRole,
-    this.branchName,
-    this.branchId,
+    this.appUserPk,
+    this.orgFk,
+    this.firstName,
+    this.lastName,
+    this.email,
+    this.password,
+    this.mobileNo,
+    this.userType,
+    this.createJobFlag,
+    this.completeJobFlag,
   });
 
   User copyWith({
-    int? userId,
-    String? userName,
-    String? personName,
-    String? userRole,
-    String? branchName,
-    int? branchId,
+    int? appUserPk,
+    int? orgFk,
+    String? firstName,
+    String? lastName,
+    String? email,
+    String? password,
+    String? mobileNo,
+    String? userType,
+    String? createJobFlag,
+    String? completeJobFlag,
   }) {
     return User(
-      userId: userId ?? this.userId,
-      userName: userName ?? this.userName,
-      personName: personName ?? this.personName,
-      userRole: userRole ?? this.userRole,
-      branchName: branchName ?? this.branchName,
-      branchId: branchId ?? this.branchId,
+      appUserPk: appUserPk ?? this.appUserPk,
+      orgFk: orgFk ?? this.orgFk,
+      firstName: firstName ?? this.firstName,
+      lastName: lastName ?? this.lastName,
+      email: email ?? this.email,
+      password: password ?? this.password,
+      mobileNo: mobileNo ?? this.mobileNo,
+      userType: userType ?? this.userType,
+      createJobFlag: createJobFlag ?? this.createJobFlag,
+      completeJobFlag: completeJobFlag ?? this.completeJobFlag,
     );
   }
 
   User.fromJson(Map<String, dynamic> json)
-    : userId = json['user_id'] as int?,
-      userName = json['user_name'] as String?,
-      personName = json['person_name'] as String?,
-      userRole = json['user_role'] as String?,
-      branchName = json['branch_name'] as String?,
-      branchId = json['branch_id'] as int?;
+    : appUserPk = json['app_user_pk'] as int?,
+      orgFk = json['org_fk'] as int?,
+      firstName = json['first_name'] as String?,
+      lastName = json['last_name'] as String?,
+      email = json['email'] as String?,
+      password = json['password'] as String?,
+      mobileNo = json['mobile_no'] as String?,
+      userType = json['user_type'] as String?,
+      createJobFlag = json['create_job_flag'] as String?,
+      completeJobFlag = json['complete_job_flag'] as String?;
 
   Map<String, dynamic> toJson() => {
-    'user_id' : userId,
-    'user_name' : userName,
-    'person_name' : personName,
-    'user_role' : userRole,
-    'branch_name' : branchName,
-    'branch_id' : branchId
+    'app_user_pk' : appUserPk,
+    'org_fk' : orgFk,
+    'first_name' : firstName,
+    'last_name' : lastName,
+    'email' : email,
+    'password' : password,
+    'mobile_no' : mobileNo,
+    'user_type' : userType,
+    'create_job_flag' : createJobFlag,
+    'complete_job_flag' : completeJobFlag
   };
 }

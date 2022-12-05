@@ -5,10 +5,10 @@ import 'package:nb_utils/nb_utils.dart';
 
 class AuthRepository extends IAuthRepository {
   @override
-  Future<User> signIn(String email, String password, bool isRemember) async {
+  Future<User> login(String email, String password, bool isRemember) async {
     try {
       final response = await NetworkUtil().getRequest(
-        api: '/user/$email/$password',
+        api: '/login/$email/$password',
       );
 
       final userList = List<User>.from(

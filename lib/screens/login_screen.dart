@@ -1,12 +1,11 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
-import 'package:job_manager/data/models/user_model.dart';
-import 'package:job_manager/data/repository/auth_repository.dart';
+import 'package:job_manager/helper/alert_box.dart';
 import 'package:job_manager/helper/app_buttons.dart';
 import 'package:job_manager/helper/constants.dart';
 import 'package:job_manager/helper/page_navigation_animation.dart';
 import 'package:job_manager/helper/style.dart';
-import 'package:job_manager/screens/home_screen.dart';
+import 'package:job_manager/screens/nav_bar_home.dart';
 import 'package:loading_overlay/loading_overlay.dart';
 import 'package:nb_utils/nb_utils.dart';
 import 'package:velocity_x/velocity_x.dart';
@@ -44,14 +43,11 @@ class _LoginScreenState extends State<LoginScreen> {
           body: SingleChildScrollView(
             child: Column(
               children: [
-                SizedBox(
-                  height: 172,
-                  child: Center(
-                    child: Image.asset(
-                      'assets/icons/ibdw.png',
-                      height: 83,
-                      color: Colors.black,
-                    ),
+                (context.screenWidth * 0.20).heightBox,
+                Center(
+                  child: Image.asset(
+                    'assets/icons/logo.png',
+                    height: 83,
                   ),
                 ),
                 Form(
@@ -60,7 +56,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     duration: const Duration(milliseconds: 700),
                     child: Column(
                       children: [
-                        40.height,
+                        70.height,
                         AppTextField(
                           controller: _emailController,
                           textFieldType: TextFieldType.EMAIL,
@@ -68,7 +64,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               context, 'Username', AppColors.primaryColor,
                               icon: Icons.email_outlined),
                         ),
-                        20.height,
+                        padding3x,
                         AppTextField(
                           controller: _passwordController,
                           textFieldType: TextFieldType.PASSWORD,
@@ -82,33 +78,31 @@ class _LoginScreenState extends State<LoginScreen> {
                               context, 'Password', AppColors.primaryColor,
                               icon: Icons.lock),
                         ),
-                        30.height,
+                        padding5x,
                         AppCustomButton(
-                          height: 60,
+                          height: 50,
+                          textColor: context.colors.secondary,
                           title: 'Sign In',
                           onPressed: () async {
                             if (_formKey.currentState!.validate()) {
                               isLoading = true;
                               setState(() {});
                               try {
-                                final User user = await AuthRepository().signIn(
-                                    _emailController.text,
-                                    _passwordController.text,
-                                    rememberMe);
+                                // final User user = await AuthRepository().signIn(
+                                //     _emailController.text,
+                                //     _passwordController.text,
+                                //     rememberMe);
                                 if (!mounted) return;
                                 Navigator.pushAndRemoveUntil(
                                   context,
-                                  SlideRightRoute(
-                                      page: HomeScreen(
-                                    user: user,
-                                  )),
+                                  SlideRightRoute(page: const HomeNav()),
                                   (Route<dynamic> route) => false,
                                 );
                               } catch (e) {
                                 showCustomDialogBottomAnimation(
                                   context: context,
                                   title: e.toString(),
-                                  isShowCancleButton: false,
+                                  isShowCancelButton: false,
                                   confirmButtonText: "Cancel",
                                   onConfirm: () => Navigator.pop(context),
                                   onCancel: () => Navigator.pop(context),
@@ -119,24 +113,8 @@ class _LoginScreenState extends State<LoginScreen> {
                             }
                           },
                         ),
-                        30.height,
-                        CheckboxListTile(
-                          title: "Remember me"
-                              .text
-                              .color(AppColors.primaryColor)
-                              .size(14)
-                              .make(),
-                          dense: true,
-                          value: rememberMe,
-                          controlAffinity: ListTileControlAffinity.leading,
-                          onChanged: (bool? value) {
-                            rememberMe = value!;
-                            setState(() {});
-                          },
-                        ),
-                        20.height,
                       ],
-                    ).px(35),
+                    ).px(20),
                   ),
                 ),
               ],

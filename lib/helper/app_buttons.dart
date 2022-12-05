@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:job_manager/helper/constants.dart';
 import 'package:job_manager/helper/style.dart';
 import 'package:nb_utils/nb_utils.dart';
+import 'package:velocity_x/velocity_x.dart';
 
 class AppCustomButton extends StatelessWidget {
   final VoidCallback? onPressed;
@@ -35,7 +36,7 @@ class AppCustomButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return AppButton(
       text: title,
-      color: color ?? context.primaryColor,
+      color: color ?? AppColors.primaryColor,
       textColor: textColor,
       elevation: elevation,
       height: height,
