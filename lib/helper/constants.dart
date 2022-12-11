@@ -18,19 +18,19 @@ const double defaultBorderRadiusLr = 20.0;
 const double defaultBorderRadiusSm = 8.0;
 
 extension Heading on String {
-  Text headingText(BuildContext context, double fontSize) {
+  Text headingText(BuildContext context, double fontSize, {Color? color}) {
     return Text(
       this,
-      style: context.textTheme.titleMedium!
-          .copyWith(fontWeight: FontWeight.w600, fontSize: fontSize),
+      style: context.textTheme.titleMedium!.copyWith(
+          fontWeight: FontWeight.w700, fontSize: fontSize, color: color),
     );
   }
 
-  Text txt(BuildContext context, double fontSize) {
+  Text txt(BuildContext context, double fontSize, {Color? color}) {
     return Text(
       this,
-      style: context.textTheme.titleMedium!
-          .copyWith(fontWeight: FontWeight.w400, fontSize: fontSize),
+      style: context.textTheme.titleMedium!.copyWith(
+          fontWeight: FontWeight.w400, fontSize: fontSize, color: color),
     );
   }
 
@@ -48,7 +48,7 @@ extension Heading on String {
     return Text(
       this,
       style: context.textTheme.titleMedium!
-          .copyWith(fontWeight: FontWeight.w600, fontSize: 20),
+          .copyWith(fontWeight: FontWeight.w700, fontSize: 20),
     );
   }
 
@@ -66,10 +66,11 @@ extension Heading on String {
     );
   }
 
-  Text heading13(BuildContext context) {
+  Text heading14(BuildContext context) {
     return Text(
       this,
-      style: context.bodySmall!.copyWith(fontSize: 13),
+      style: context.bodySmall!
+          .copyWith(fontSize: 14, fontWeight: FontWeight.w700    ),
     );
   }
 }
@@ -116,7 +117,7 @@ class Constants {
 
   InputDecoration appInputDecoration(
       BuildContext context, String hint, Color color,
-      {IconData? icon}) {
+      {IconData? icon, double iconSize = 20}) {
     return InputDecoration(
       hintText: hint,
       hintStyle: TextStyle(color: AppColors.grey, fontSize: 14),
@@ -124,6 +125,7 @@ class Constants {
           ? Icon(
               icon,
               color: context.primaryColor,
+              size: iconSize,
             )
           : null,
       // filled: true,

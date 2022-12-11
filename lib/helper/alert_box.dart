@@ -26,9 +26,9 @@ showCustomDialogBottomAnimation(
               child: Container(
                 height: height,
                 width: context.screenWidth * 0.8,
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(20)),
+                decoration: const BoxDecoration(
+                  color: Colors.white,
+                ),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [

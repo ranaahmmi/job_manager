@@ -1,7 +1,11 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:job_manager/data/repository/auth_repository.dart';
+import 'package:job_manager/data/riverpod/jobs_notifier_provider.dart';
 import 'package:job_manager/helper/alert_box.dart';
 import 'package:job_manager/helper/app_buttons.dart';
+import 'package:job_manager/helper/app_icons_icons.dart';
 import 'package:job_manager/helper/constants.dart';
 import 'package:job_manager/helper/page_navigation_animation.dart';
 import 'package:job_manager/helper/style.dart';
@@ -10,13 +14,13 @@ import 'package:loading_overlay/loading_overlay.dart';
 import 'package:nb_utils/nb_utils.dart';
 import 'package:velocity_x/velocity_x.dart';
 
-class LoginScreen extends StatefulWidget {
+class LoginScreen extends ConsumerStatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  ConsumerState<LoginScreen> createState() => _LoginScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _LoginScreenState extends ConsumerState<LoginScreen> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
@@ -45,9 +49,12 @@ class _LoginScreenState extends State<LoginScreen> {
               children: [
                 (context.screenWidth * 0.20).heightBox,
                 Center(
-                  child: Image.asset(
-                    'assets/icons/logo.png',
-                    height: 83,
+                  child: Hero(
+                    tag: "appLogo",
+                    child: Image.asset(
+                      'assets/icons/logo.png',
+                      height: 83,
+                    ),
                   ),
                 ),
                 Form(
@@ -62,7 +69,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           textFieldType: TextFieldType.EMAIL,
                           decoration: Constants().appInputDecoration(
                               context, 'Username', AppColors.primaryColor,
-                              icon: Icons.email_outlined),
+                              icon: AppIcons.mail, iconSize: 18),
                         ),
                         padding3x,
                         AppTextField(
@@ -76,7 +83,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           },
                           decoration: Constants().appInputDecoration(
                               context, 'Password', AppColors.primaryColor,
-                              icon: Icons.lock),
+                              icon: AppIcons.lock, iconSize: 22),
                         ),
                         padding5x,
                         AppCustomButton(
@@ -88,16 +95,19 @@ class _LoginScreenState extends State<LoginScreen> {
                               isLoading = true;
                               setState(() {});
                               try {
-                                // final User user = await AuthRepository().signIn(
-                                //     _emailController.text,
-                                //     _passwordController.text,
-                                //     rememberMe);
-                                if (!mounted) return;
-                                Navigator.pushAndRemoveUntil(
-                                  context,
-                                  SlideRightRoute(page: const HomeNav()),
-                                  (Route<dynamic> route) => false,
-                                );
+                                await AuthRepository()
+                                    .login(_emailController.text,
+                                        _passwordController.text, rememberMe)
+                                    .then((value) {
+                                  ref
+                                      .read(jobListNotifierProvider.notifier)
+                                      .getJobs();
+                                  Navigator.pushAndRemoveUntil(
+                                    context,
+                                    SlideRightRoute(page: const HomeNav()),
+                                    (Route<dynamic> route) => false,
+                                  );
+                                });
                               } catch (e) {
                                 showCustomDialogBottomAnimation(
                                   context: context,

@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:job_manager/data/repository/custom_providers.dart';
 import 'package:job_manager/helper/alert_box.dart';
+import 'package:job_manager/helper/app_icons_icons.dart';
 import 'package:job_manager/screens/jobs_screen.dart';
+import 'package:job_manager/screens/map.dart';
+import 'package:job_manager/screens/profile_screen.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 class HomeNav extends ConsumerWidget {
@@ -51,25 +54,25 @@ class HomeNav extends ConsumerWidget {
           items: const [
             BottomNavigationBarItem(
               icon: Icon(
-                Icons.receipt_long,
+                AppIcons.business_rules,
                 size: 20,
               ),
               label: 'Jobs',
             ),
             BottomNavigationBarItem(
               icon: Icon(
-                Icons.map_rounded,
+                AppIcons.map,
                 size: 20,
               ),
               label: 'Maps',
             ),
-            BottomNavigationBarItem(
-              icon: Icon(
-                Icons.add_circle_outline,
-                size: 20,
-              ),
-              label: ' Create',
-            ),
+            // BottomNavigationBarItem(
+            //   icon: Icon(
+            //     AppIcons.addition_color_outline,
+            //     size: 20,
+            //   ),
+            //   label: ' Create',
+            // ),
             BottomNavigationBarItem(
               icon: Icon(
                 Icons.person,
@@ -96,12 +99,15 @@ class HomeNav extends ConsumerWidget {
     switch (index) {
       case 0:
         return const JobsScreen();
-      // case 1:
-      //   return CompaniesScreen();
+      case 1:
+        return const MapPicker(
+          lat: 31.5204,
+          lng: 74.3587,
+        );
       // case 2:
       //   return MyJobScreen();
-      // case 3:
-      //   return ProfileScreen();
+      case 2:
+        return const ProfileScreen();
       default:
         return const JobsScreen();
     }

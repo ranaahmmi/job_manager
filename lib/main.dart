@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
             title: 'International Brand Distributor',
             theme: lightTheme,
             darkTheme: darkTheme,
-            themeMode: ThemeMode.system,
+            themeMode: ThemeMode.light,
             home: const SplashScreen(),
             debugShowCheckedModeBanner: false,
             builder: (BuildContext context, Widget? widget) {

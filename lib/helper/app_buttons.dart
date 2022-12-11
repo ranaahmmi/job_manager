@@ -19,7 +19,7 @@ class AppCustomButton extends StatelessWidget {
 
   const AppCustomButton({
     Key? key,
-    this.onPressed,
+    required this.onPressed,
     required this.title,
     this.color,
     this.textColor = Colors.white,
@@ -42,7 +42,7 @@ class AppCustomButton extends StatelessWidget {
       height: height,
       width: width,
       shapeBorder: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(0),
+        borderRadius: BorderRadius.circular(radius),
       ),
       enableScaleAnimation: true,
       textStyle: TextStyle(
@@ -52,6 +52,46 @@ class AppCustomButton extends StatelessWidget {
       ),
       padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 0),
       onTap: onPressed,
+    );
+  }
+}
+
+class AppCustomButtonWithChild extends StatelessWidget {
+  final VoidCallback? onPressed;
+  final Widget child;
+  final Color? color;
+  final double elevation;
+  final double? height;
+  final Color shadowColor;
+  final double? width;
+  final double radius;
+
+  const AppCustomButtonWithChild({
+    Key? key,
+    required this.onPressed,
+    required this.child,
+    this.color,
+    this.elevation = 0,
+    this.height = 45,
+    this.shadowColor = const Color(0xFF379DFF),
+    this.width,
+    this.radius = 0,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return AppButton(
+      color: color ?? AppColors.primaryColor,
+      elevation: elevation,
+      height: height,
+      width: width,
+      shapeBorder: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(radius),
+      ),
+      enableScaleAnimation: true,
+      padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 0),
+      onTap: onPressed,
+      child: child,
     );
   }
 }

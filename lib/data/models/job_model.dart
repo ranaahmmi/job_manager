@@ -21,7 +21,7 @@ class JobModel {
   final String? specialInstructions;
   final String? durationHours;
   final String? durationMinutes;
-  final String? territoryFk;
+  final int? territoryFk;
   final int? assigneeFk;
   final String? currentStatus;
   final String? createdBy;
@@ -86,7 +86,7 @@ class JobModel {
     String? specialInstructions,
     String? durationHours,
     String? durationMinutes,
-    String? territoryFk,
+    int? territoryFk,
     int? assigneeFk,
     String? currentStatus,
     String? createdBy,
@@ -130,69 +130,72 @@ class JobModel {
   }
 
   JobModel.fromJson(Map<String, dynamic> json)
-    : jobPk = json['job_pk'] as int?,
-      orgFk = json['org_fk'] as int?,
-      orgName = json['org_name'] as String?,
-      jobTemplateFk = json['job_template_fk'] as int?,
-      jobTemplateName = json['job_template_name'] as String?,
-      jobTypeFk = json['job_type_fk'] as int?,
-      jobTypeName = json['job_type_name'] as String?,
-      clientFk = json['client_fk'] as int?,
-      clientCode = json['client_code'] as String?,
-      clientName = json['client_name'] as String?,
-      mobileNo = json['mobile_no'] as String?,
-      address = json['address'] as String?,
-      flat = json['flat'] as String?,
-      floor = json['floor'] as String?,
-      entrance = json['entrance'] as String?,
-      jobCode = json['job_code'] as String?,
-      scheduledOn = json['scheduled_on'] as String?,
-      scheduledAt = json['scheduled_at'] as String?,
-      description = json['description'] as String?,
-      specialInstructions = json['special_instructions'] as String?,
-      durationHours = json['duration_hours'] as String?,
-      durationMinutes = json['duration_minutes'] as String?,
-      territoryFk = json['territory_fk'] as String?,
-      assigneeFk = json['assignee_fk'] as int?,
-      currentStatus = json['current_status'] as String?,
-      createdBy = json['created_by'] as String?,
-      createdOn = json['created_on'] as String?,
-      updatedBy = json['updated_by'] as String?,
-      updatedOn = json['updated_on'] as String?,
-      clientContacts = (json['client_contacts'] as List?)?.map((dynamic e) => ClientContacts.fromJson(e as Map<String,dynamic>)).toList();
+      : jobPk = json['job_pk'] as int?,
+        orgFk = json['org_fk'] as int?,
+        orgName = json['org_name'] as String?,
+        jobTemplateFk = json['job_template_fk'] as int?,
+        jobTemplateName = json['job_template_name'] as String?,
+        jobTypeFk = json['job_type_fk'] as int?,
+        jobTypeName = json['job_type_name'] as String?,
+        clientFk = json['client_fk'] as int?,
+        clientCode = json['client_code'] as String?,
+        clientName = json['client_name'] as String?,
+        mobileNo = json['mobile_no'] as String?,
+        address = json['address'] as String?,
+        flat = json['flat'] as String?,
+        floor = json['floor'] as String?,
+        entrance = json['entrance'] as String?,
+        jobCode = json['job_code'] as String?,
+        scheduledOn = json['scheduled_on'] as String?,
+        scheduledAt = json['scheduled_at'] as String?,
+        description = json['description'] as String?,
+        specialInstructions = json['special_instructions'] as String?,
+        durationHours = json['duration_hours'] as String?,
+        durationMinutes = json['duration_minutes'] as String?,
+        territoryFk = json['territory_fk'] as int?,
+        assigneeFk = json['assignee_fk'] as int?,
+        currentStatus = json['current_status'] as String?,
+        createdBy = json['created_by'] as String?,
+        createdOn = json['created_on'] as String?,
+        updatedBy = json['updated_by'] as String?,
+        updatedOn = json['updated_on'] as String?,
+        clientContacts = (json['client_contacts'] as List?)
+            ?.map((dynamic e) =>
+                ClientContacts.fromJson(e as Map<String, dynamic>))
+            .toList();
 
   Map<String, dynamic> toJson() => {
-    'job_pk' : jobPk,
-    'org_fk' : orgFk,
-    'org_name' : orgName,
-    'job_template_fk' : jobTemplateFk,
-    'job_template_name' : jobTemplateName,
-    'job_type_fk' : jobTypeFk,
-    'job_type_name' : jobTypeName,
-    'client_fk' : clientFk,
-    'client_code' : clientCode,
-    'client_name' : clientName,
-    'mobile_no' : mobileNo,
-    'address' : address,
-    'flat' : flat,
-    'floor' : floor,
-    'entrance' : entrance,
-    'job_code' : jobCode,
-    'scheduled_on' : scheduledOn,
-    'scheduled_at' : scheduledAt,
-    'description' : description,
-    'special_instructions' : specialInstructions,
-    'duration_hours' : durationHours,
-    'duration_minutes' : durationMinutes,
-    'territory_fk' : territoryFk,
-    'assignee_fk' : assigneeFk,
-    'current_status' : currentStatus,
-    'created_by' : createdBy,
-    'created_on' : createdOn,
-    'updated_by' : updatedBy,
-    'updated_on' : updatedOn,
-    'client_contacts' : clientContacts?.map((e) => e.toJson()).toList()
-  };
+        'job_pk': jobPk,
+        'org_fk': orgFk,
+        'org_name': orgName,
+        'job_template_fk': jobTemplateFk,
+        'job_template_name': jobTemplateName,
+        'job_type_fk': jobTypeFk,
+        'job_type_name': jobTypeName,
+        'client_fk': clientFk,
+        'client_code': clientCode,
+        'client_name': clientName,
+        'mobile_no': mobileNo,
+        'address': address,
+        'flat': flat,
+        'floor': floor,
+        'entrance': entrance,
+        'job_code': jobCode,
+        'scheduled_on': scheduledOn,
+        'scheduled_at': scheduledAt,
+        'description': description,
+        'special_instructions': specialInstructions,
+        'duration_hours': durationHours,
+        'duration_minutes': durationMinutes,
+        'territory_fk': territoryFk,
+        'assignee_fk': assigneeFk,
+        'current_status': currentStatus,
+        'created_by': createdBy,
+        'created_on': createdOn,
+        'updated_by': updatedBy,
+        'updated_on': updatedOn,
+        'client_contacts': clientContacts?.map((e) => e.toJson()).toList()
+      };
 }
 
 class ClientContacts {
@@ -215,14 +218,13 @@ class ClientContacts {
   }
 
   ClientContacts.fromJson(Map<String, dynamic> json)
-    : contactPerson = json['contact_person'] as String?,
-      phoneNo = json['phone_no'] as String?;
+      : contactPerson = json['contact_person'] as String?,
+        phoneNo = json['phone_no'] as String?;
 
-  Map<String, dynamic> toJson() => {
-    'contact_person' : contactPerson,
-    'phone_no' : phoneNo
-  };
+  Map<String, dynamic> toJson() =>
+      {'contact_person': contactPerson, 'phone_no': phoneNo};
 }
+
 class JobStatus {
   final String? jobStatus;
   final String? statusDate;
@@ -247,13 +249,10 @@ class JobStatus {
   }
 
   JobStatus.fromJson(Map<String, dynamic> json)
-    : jobStatus = json['job_status'] as String?,
-      statusDate = json['status_date'] as String?,
-      remarks = json['remarks'] as String?;
+      : jobStatus = json['job_status'] as String?,
+        statusDate = json['status_date'] as String?,
+        remarks = json['remarks'] as String?;
 
-  Map<String, dynamic> toJson() => {
-    'job_status' : jobStatus,
-    'status_date' : statusDate,
-    'remarks' : remarks
-  };
+  Map<String, dynamic> toJson() =>
+      {'job_status': jobStatus, 'status_date': statusDate, 'remarks': remarks};
 }

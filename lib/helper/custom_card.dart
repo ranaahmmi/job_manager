@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:job_manager/helper/constants.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 class CustomCard extends StatelessWidget {
@@ -15,7 +14,7 @@ class CustomCard extends StatelessWidget {
   const CustomCard({
     Key? key,
     required this.child,
-    this.cornerRound = defaultBorderRadius,
+    this.cornerRound = 0,
     this.height,
     this.width,
     this.color,
