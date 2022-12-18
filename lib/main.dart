@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
         designSize: const Size(360, 690),
         builder: (context, child) {
           return MaterialApp(
-            title: 'International Brand Distributor',
+            title: 'Job Manager',
             theme: lightTheme,
             darkTheme: darkTheme,
             themeMode: ThemeMode.light,

@@ -11,7 +11,11 @@ import 'package:job_manager/screens/job_report_screen.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 class JobDetailScreen extends ConsumerWidget {
-  const JobDetailScreen({Key? key}) : super(key: key);
+  final JobModel job;
+  const JobDetailScreen({
+    Key? key,
+    required this.job,
+  }) : super(key: key);
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return DefaultTabController(

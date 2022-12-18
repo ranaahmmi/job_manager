@@ -17,6 +17,7 @@ const double defaultBorderRadius = 12.0;
 const double defaultBorderRadiusLr = 20.0;
 const double defaultBorderRadiusSm = 8.0;
 
+
 extension Heading on String {
   Text headingText(BuildContext context, double fontSize, {Color? color}) {
     return Text(
@@ -70,7 +71,7 @@ extension Heading on String {
     return Text(
       this,
       style: context.bodySmall!
-          .copyWith(fontSize: 14, fontWeight: FontWeight.w700    ),
+          .copyWith(fontSize: 14, fontWeight: FontWeight.w700),
     );
   }
 }

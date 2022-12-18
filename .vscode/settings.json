@@ -1,3 +1,4 @@
 {
-  "cSpell.words": ["cupertino", "LTRB", "noto", "riverpod", "vsync"]
+  "cSpell.words": ["cupertino", "LTRB", "noto", "riverpod", "vsync"],
+  "editor.fontSize": 16
 }

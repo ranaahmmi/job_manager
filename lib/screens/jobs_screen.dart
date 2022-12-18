@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:job_manager/data/riverpod/jobs_notifier_provider.dart';
+import 'package:job_manager/helper/loader.dart';
 import 'package:job_manager/helper/page_navigation_animation.dart';
 import 'package:job_manager/screens/job_detail_screen.dart';
-import 'package:nb_utils/nb_utils.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 import 'package:job_manager/data/models/job_model.dart';
@@ -45,8 +45,12 @@ class _JobsScreenState extends ConsumerState<JobsScreen> {
                           dropdownValue = newValue!;
                         });
                       },
-                      items: <String>['Today', 'Two', 'Free', 'Four']
-                          .map<DropdownMenuItem<String>>((String value) {
+                      items: <String>[
+                        'Today',
+                        'Yesterday',
+                        '1 week',
+                        '1 months'
+                      ].map<DropdownMenuItem<String>>((String value) {
                         return DropdownMenuItem<String>(
                           value: value,
                           child: Text(value),
@@ -69,7 +73,7 @@ class _JobsScreenState extends ConsumerState<JobsScreen> {
               ],
             ).px(20)
           : jobListProvider is JobsLoadingState
-              ? Loader(
+              ? const AppLoader(
                   size: 50,
                 )
               : jobListProvider is JobsErrorState
@@ -113,7 +117,7 @@ class JobCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    log(job.toJson());
+    Vx.log(job.toJson());
     return CustomCard(
             isBorder: true,
             isShadow: true,
@@ -124,12 +128,13 @@ class JobCard extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    (job.scheduledOn ?? "16:00 - 19:00")
+                    (DateTime.parse(job.scheduledOn ?? "2022-12-05T23:00:00Z")
+                            .timeAgo())
                         .text
                         .color(context.colors.primary)
                         .size(11)
                         .make(),
-                    (job.durationHours ?? "In 30 mins")
+                    (job.durationHours ?? "durationHours")
                         .text
                         .color(context.colors.primary)
                         .size(11)
@@ -151,7 +156,7 @@ class JobCard extends StatelessWidget {
                     .make()
                     .pOnly(right: 120),
                 padding1x,
-                "Lorem ipsum dolor sit amet, consetetur sadipscing "
+                (job.address ?? "")
                     .txt(context, 12)
                     .text
                     .color(
@@ -160,7 +165,12 @@ class JobCard extends StatelessWidget {
               ],
             ).pLTRB(14, 14, 14, 30))
         .onTap(() {
-      Navigator.push(context, SlideRightRoute(page: const JobDetailScreen()));
+      Navigator.push(
+          context,
+          SlideRightRoute(
+              page: JobDetailScreen(
+            job: job,
+          )));
     });
   }
 }
