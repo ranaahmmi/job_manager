@@ -6,7 +6,6 @@ import 'package:velocity_x/velocity_x.dart';
 import 'package:job_manager/data/models/job_model.dart';
 import 'package:job_manager/helper/constants.dart';
 import 'package:job_manager/helper/style.dart';
-import 'package:job_manager/screens/job_detail_screen.dart';
 
 class JobReportScreen extends ConsumerStatefulWidget {
   final JobModel jobs;
@@ -23,58 +22,50 @@ class _JobReportScreenState extends ConsumerState<JobReportScreen> {
   Widget build(BuildContext context) {
     return ListView(
       children: [
-        const JobDetailHeader(),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
+        padding1x,
+        QuestionListTile(
+          title: "Is the color correct?",
+          icon: Icon(
+            Icons.check_circle,
+            color: context.colors.secondary,
+            size: 24,
+          ),
+        ),
+        QuestionListTile(
+          title: "Is the color correct?",
+          icon: Icon(
+            Icons.check_circle,
+            color: context.colors.secondary,
+            size: 24,
+          ),
+          child: Column(children: [
             padding1x,
-            QuestionListTile(
-              title: "Is the color correct?",
-              icon: Icon(
-                Icons.check_circle,
-                color: context.colors.secondary,
-                size: 24,
+            TextFormField(
+              style: context.bodySmall,
+              decoration: const InputDecoration(
+                hintText: 'Enter description',
+                border: InputBorder.none,
+                focusedBorder: InputBorder.none,
+                enabledBorder: InputBorder.none,
+                disabledBorder: InputBorder.none,
+                errorBorder: InputBorder.none,
               ),
             ),
-            QuestionListTile(
-              title: "Is the color correct?",
-              icon: Icon(
-                Icons.check_circle,
-                color: context.colors.secondary,
-                size: 24,
-              ),
-              child: Column(children: [
-                padding1x,
-                TextFormField(
-                  style: context.bodySmall,
-                  decoration: const InputDecoration(
-                    hintText: 'Enter description',
-                    border: InputBorder.none,
-                    focusedBorder: InputBorder.none,
-                    enabledBorder: InputBorder.none,
-                    disabledBorder: InputBorder.none,
-                    errorBorder: InputBorder.none,
-                  ),
-                ),
-                padding1x,
-              ]),
-            ),
-            QuestionListTile(
-              title: "Remove any installation or equipment?",
-              icon: Icon(
-                Icons.cancel,
-                color: context.colors.error,
-                size: 24,
-              ),
-            ),
-            JobDetailImageUpload(
-                title: 'Fix leakage (Before)', uploadImage: () {}),
-            JobDetailImageUpload(
-                title: 'Fix leakage (After)', uploadImage: () {})
-          ],
-        ).px(20)
+            padding1x,
+          ]),
+        ),
+        QuestionListTile(
+          title: "Remove any installation or equipment?",
+          icon: Icon(
+            Icons.cancel,
+            color: context.colors.error,
+            size: 24,
+          ),
+        ),
+        JobDetailImageUpload(title: 'Fix leakage (Before)', uploadImage: () {}),
+        JobDetailImageUpload(title: 'Fix leakage (After)', uploadImage: () {})
       ],
-    );
+    ).px(20);
   }
 }
 

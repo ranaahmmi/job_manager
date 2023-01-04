@@ -5,7 +5,6 @@ import 'package:job_manager/helper/loader.dart';
 import 'package:job_manager/helper/page_navigation_animation.dart';
 import 'package:job_manager/screens/job_detail_screen.dart';
 import 'package:velocity_x/velocity_x.dart';
-
 import 'package:job_manager/data/models/job_model.dart';
 import 'package:job_manager/helper/constants.dart';
 import 'package:job_manager/helper/custom_card.dart';
@@ -23,7 +22,6 @@ class _JobsScreenState extends ConsumerState<JobsScreen> {
   @override
   Widget build(BuildContext context) {
     final jobListProvider = ref.watch(jobListNotifierProvider);
-
     return Scaffold(
       body: jobListProvider is JobsLoadedState
           ? ListView(
@@ -64,8 +62,11 @@ class _JobsScreenState extends ConsumerState<JobsScreen> {
                   physics: const NeverScrollableScrollPhysics(),
                   padding: EdgeInsets.zero,
                   itemBuilder: (context, index) {
+                    Vx.log(jobListProvider.jobsList![index].currentStatus);
                     return JobCard(
-                      isSelected: index == 0 ? true : false,
+                      isSelected:
+                          jobListProvider.jobsList![index].currentStatus ==
+                              "Start",
                       job: jobListProvider.jobsList![index],
                     ).pOnly(bottom: 25);
                   },
@@ -156,7 +157,7 @@ class JobCard extends StatelessWidget {
                     .make()
                     .pOnly(right: 120),
                 padding1x,
-                (job.address ?? "")
+                (job.address ?? "Address")
                     .txt(context, 12)
                     .text
                     .color(

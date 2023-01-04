@@ -24,95 +24,93 @@ class JobDetailScreen extends ConsumerWidget {
         color: Colors.white,
         child: SafeArea(
           child: Scaffold(
-              appBar: PreferredSize(
-                preferredSize: const Size.fromHeight(70),
-                child: Container(
-                  decoration: const BoxDecoration(
-                    color: Colors.white,
-                    // boxShadow: [AppColors.shadow],
-                  ),
-                  width: context.screenWidth,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      const Spacer(),
-                      TabBar(
-                        unselectedLabelColor: context.colors.primary,
-                        labelColor: context.colors.primary,
-                        indicatorSize: TabBarIndicatorSize.tab,
-                        indicatorPadding:
-                            const EdgeInsets.only(top: 10, left: 10, right: 10),
-                        indicatorWeight: 5,
-                        indicatorColor: context.colors.secondary,
-                        labelStyle: context.headlineLarge!.copyWith(
-                            fontWeight: FontWeight.w700, fontSize: 14),
-                        unselectedLabelStyle: context.headlineLarge!.copyWith(
-                            fontWeight: FontWeight.w700, fontSize: 14),
-                        tabs: const [Text("Job Detail"), Text("Report")],
-                      ).h(50),
-                    ],
-                  ),
-                ),
-              ),
               body: Stack(
+            children: [
+              Column(
                 children: [
-                  TabBarView(
-                    children: <Widget>[
-                      JobDetail(jobs: JobModel()),
-                      JobReportScreen(jobs: JobModel())
-                    ],
+                  const JobDetailHeader(),
+                  Container(
+                    decoration: const BoxDecoration(
+                      color: Colors.white,
+                      // boxShadow: [AppColors.shadow],
+                    ),
+                    width: context.screenWidth,
+                    child: TabBar(
+                      unselectedLabelColor: context.colors.primary,
+                      labelColor: context.colors.primary,
+                      indicatorSize: TabBarIndicatorSize.tab,
+                      indicatorPadding:
+                          const EdgeInsets.only(top: 10, left: 10, right: 10),
+                      indicatorWeight: 5,
+                      indicatorColor: context.colors.secondary,
+                      labelStyle: context.headlineLarge!
+                          .copyWith(fontWeight: FontWeight.w700, fontSize: 14),
+                      unselectedLabelStyle: context.headlineLarge!
+                          .copyWith(fontWeight: FontWeight.w700, fontSize: 14),
+                      tabs: const [Text("Job Detail"), Text("Report")],
+                    ).h(50),
                   ),
-                  Positioned(
-                      left: 0,
-                      right: 0,
-                      bottom: 50,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          AppCustomButtonWithChild(
-                            height: 40,
-                            elevation: 3,
-                            radius: 8,
-                            onPressed: () {},
-                            child: Row(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                const Icon(
-                                  Icons.pause,
-                                  size: 20,
-                                  color: Colors.white,
-                                ),
-                                5.widthBox,
-                                "Pause".headingText(context, 12,
-                                    color: Colors.white),
-                              ],
-                            ).px(30),
-                          ),
-                          30.widthBox,
-                          AppCustomButtonWithChild(
-                            color: context.colors.secondary,
-                            height: 40,
-                            elevation: 3,
-                            radius: 8,
-                            onPressed: () {},
-                            child: Row(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                const Icon(
-                                  Icons.check,
-                                  size: 20,
-                                  color: Colors.white,
-                                ),
-                                5.widthBox,
-                                "Finish".headingText(context, 12,
-                                    color: Colors.white),
-                              ],
-                            ).px(30),
-                          ),
-                        ],
-                      ))
+                  Expanded(
+                    child: TabBarView(
+                      children: <Widget>[
+                        JobDetail(jobs: JobModel()),
+                        JobReportScreen(jobs: JobModel())
+                      ],
+                    ),
+                  ),
                 ],
-              )),
+              ),
+              Positioned(
+                  left: 0,
+                  right: 0,
+                  bottom: 50,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      AppCustomButtonWithChild(
+                        height: 40,
+                        elevation: 3,
+                        radius: 8,
+                        onPressed: () {},
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            const Icon(
+                              Icons.pause,
+                              size: 20,
+                              color: Colors.white,
+                            ),
+                            5.widthBox,
+                            "Pause"
+                                .headingText(context, 12, color: Colors.white),
+                          ],
+                        ).px(30),
+                      ),
+                      30.widthBox,
+                      AppCustomButtonWithChild(
+                        color: context.colors.secondary,
+                        height: 40,
+                        elevation: 3,
+                        radius: 8,
+                        onPressed: () {},
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            const Icon(
+                              Icons.check,
+                              size: 20,
+                              color: Colors.white,
+                            ),
+                            5.widthBox,
+                            "Finish"
+                                .headingText(context, 12, color: Colors.white),
+                          ],
+                        ).px(30),
+                      ),
+                    ],
+                  ))
+            ],
+          )),
         ),
       ),
     );
@@ -135,7 +133,6 @@ class _JobReportScreenState extends ConsumerState<JobDetail> {
     return ListView(
       padding: EdgeInsets.zero,
       children: [
-        const JobDetailHeader(),
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
